@@ -1,0 +1,59 @@
+specVersion: 0.0.2
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: Contract
+    network: ropsten
+    source:
+      address: "0xF165B2DB7B6f40e3fF133C4Ec68476ac9c742153"
+      abi: Contract
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.3
+      language: wasm/assemblyscript
+      entities:
+        - NewEmployer
+        - NewWorker
+        - NewGig
+        # - WorkerApplied
+        # - WorkerApproved
+        # - WorkDone
+        - NewFoodItem
+        # - RedeemedWolfToken
+        # - Minted
+        # - Burned
+        # - Transfer
+        # - Approval
+        # - OwnershipTransferred
+      abis:
+        - name: Contract
+          file: ./abis/Contract.json
+      eventHandlers:
+        - event: NewEmployer(address,bytes32)
+          handler: handleNewEmployer
+        - event: NewWorker(address,bytes32)
+          handler: handleNewWorker
+        - event: NewGig(address,bytes32)
+          handler: handleNewGig
+        # - event: WorkerApplied(address,uint256)
+          # handler: handleWorkerApplied
+        # - event: WorkerApproved(address,uint256)
+          # handler: handleWorkerApproved
+        # - event: WorkDone(address,uint256)
+          # handler: handleWorkDone
+        - event: NewFoodItem(address,bytes32)
+          handler: handleNewFoodItem
+        # - event: RedeemedWolfToken(address,uint256)
+          # handler: handleRedeemedWolfToken
+        # - event: Minted(address,uint256)
+          # handler: handleMinted
+        # - event: Burned(address,uint256)
+          # handler: handleBurned
+        # - event: Transfer(indexed address,indexed address,uint256)
+          # handler: handleTransfer
+        # - event: Approval(indexed address,indexed address,uint256)
+          # handler: handleApproval
+        # - event: OwnershipTransferred(indexed address,indexed address)
+          # handler: handleOwnershipTransferred
+      file: ./src/mapping.ts

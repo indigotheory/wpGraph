@@ -1,0 +1,39 @@
+type Employer @entity {
+  id: ID!
+  name: String!
+  city: String!
+  state: String!
+  zipcode: BigInt!
+  account: String!
+}
+
+type Worker @entity {
+  id: ID!
+  name: String!
+  account: String!
+}
+
+type Gig @entity {
+  id: ID!
+  title: String!
+  description: String!
+  wages: BigInt! #hourly rate in dollars/wolfToken
+  employer: String!
+  when: String!
+  where: String!
+  pickupLocation: String
+  # workersApplied: [Worker!]
+  # worker: Worker
+  start: BigInt
+  end: BigInt
+}
+
+# Sale Items
+
+type Food @entity {
+  id: ID!
+  description: String!
+  price: String!
+  vendor: String
+  vendorAccount: String!
+}
